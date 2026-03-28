@@ -1,21 +1,17 @@
-namespace Variant1;
+using Variant1;
 
-public static class Variant1Tester
+var file = new FileResource("report.txt");
+var network = new NetworkResource("api.company.local");
+var manager = new ResourceManager<Resource>();
+
+manager.Add(file);
+manager.Add(network);
+
+manager.OpenAll();
+
+using (var disposableFile = new FileResource("temporary.txt"))
 {
-    public static void Run()
-    {
-        Console.WriteLine("Testing Variant1...");
-        
-        using (var resource = new FileResource("example.txt"))
-        {
-            resource.Open();
-            Console.WriteLine($"Is Open? {resource.IsOpen}");
-        }
-        
-        using (var network = new NetworkResource("api.server.com"))
-        {
-            network.Open();
-            Console.WriteLine($"Is Open? {network.IsOpen}");
-        }
-    }
+    disposableFile.Open();
 }
+
+manager.CloseAll();
