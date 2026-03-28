@@ -10,7 +10,7 @@ public override void Open()
 public override void Close()
 {
     IsOpen = false;
-    Console.WriteLine($"Closed: {Name}");
+    Console.WriteLine($"Filse closed: {Name}");
 }
 public void Dispose()
 {
